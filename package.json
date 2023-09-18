@@ -17,6 +17,8 @@
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "serve-favicon": "^2.5.0",
+    "tailwindcss-animated": "^1.0.1",
+    "tw-elements-react": "^1.0.0-alpha1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -43,5 +45,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
 }

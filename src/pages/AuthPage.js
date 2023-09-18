@@ -7,6 +7,7 @@ const AuthPage = ({setUser}) => {
     return(
         <div>
             <h1>Auth Page</h1>
+            <h4 className="bg-gray-500">Enter your login info</h4>
             <button onClick={() => setShowLogin(!showLogin)}>{showLogin ? "Sign up" : "Log in"}</button>
 
             {
