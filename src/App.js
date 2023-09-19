@@ -14,6 +14,7 @@ import { Footer } from './components/Footer.js';
 import { ShoppingCart } from './components/ShoppingCart.js';
 import { ContactPage } from './pages/ContactPage.js';
 import { RegisterFom } from './components/signUpForm/RegisterForm.js';
+import { HomePage } from './pages/HomePage.js';
 
 
 function App(props) {
@@ -35,6 +36,7 @@ function App(props) {
       ): (
         <>
           <Routes>
+          <Route path="/" element={<HomePage/>} />
             <Route path="/about" element={<AboutPage/>} />
             <Route path="/account" element={<AuthPage/>} />
             <Route path="/shop" element={<ShopPage/>}/>
