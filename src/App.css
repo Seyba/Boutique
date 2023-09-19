@@ -1,3 +1,4 @@
+/*
 .App {
   text-align: center;
 }
@@ -37,10 +38,14 @@
   }
 }
 
+*/
+
 
 /* css */
 
 /* CSS Custom Properties */
+
+/*
 :root {
   --white: #FFFFFF;
   --tan-1: #f6fbfb;
@@ -145,51 +150,5 @@ label {
   align-items: center;
 }
 
-input {
-  padding: 1vmin;
-  font-size: 2vmin;
-  border: .1vmin solid var(--tan-3);
-  border-radius: .5vmin;
-  color: var(--text-dark);
-  background-image: none !important; /* prevent lastpass */
-  outline: none;
-}
+*/
 
-input:focus {
-  border-color: var(--blue);
-}
-
-button, a.button {
-  margin: 1vmin;
-  padding: 1vmin;
-  color: var(--white);
-  background-color: var(--blue);
-  font-size: 2vmin;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  border: .1vmin solid var(--tan-2);
-  border-radius: .5vmin;
-  outline: none;
-  cursor: pointer;
-}
-
-button.btn-sm {
-  font-size: 1.5vmin;
-  padding: .6vmin .8vmin;
-}
-
-button.btn-xs {
-  font-size: 1vmin;
-  padding: .4vmin .5vmin;
-}
-
-button:disabled, form:invalid button[type="submit"] {
-  cursor: not-allowed;
-  background-color: var(--tan-4);
-}
-
-button[type="submit"] {
-  grid-column: span 2;
-  margin: 1vmin 0 0;
-}

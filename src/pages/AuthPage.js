@@ -5,9 +5,8 @@ const AuthPage = ({setUser}) => {
     const [showLogin, setShowLogin] = useState(false)
 
     return(
-        <div>
+        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
             <h1>Auth Page</h1>
-            <h4 className="bg-gray-500">Enter your login info</h4>
             <button onClick={() => setShowLogin(!showLogin)}>{showLogin ? "Sign up" : "Log in"}</button>
 
             {
