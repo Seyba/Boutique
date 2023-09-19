@@ -2,49 +2,96 @@ export const ShopPage = () => {
     const products = [
         {
             id: 1,
-            name: 'Basic Tee',
+            name: 'Glow Powder',
             href: '#',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
+            imageSrc: 'https://assets.website-files.com/6489a11ade23496cb827ad72/648c2a48b611650ce171d334_Product-main-06.jpg',
             imageAlt: "Front of men's Basic Tee in black.",
-            price: '$35',
-            color: 'Black',
+            price: '$35'
         },
         {
             id: 2,
-            name: 'Basic Tee',
+            name: 'Blossom Scrub',
             href: '#',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
+            imageSrc: 'https://assets.website-files.com/6489a11ade23496cb827ad72/648c2babbbd93dbadbcf5c15_Product-main-08.jpg',
             imageAlt: "Front of men's Basic Tee in black.",
-            price: '$35',
-            color: 'Black',
+            price: '$35'
         },
         {
             id: 3,
-            name: 'Basic Tee',
+            name: 'Flawless Foundation',
             href: '#',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
+            imageSrc: 'https://assets.website-files.com/6489a11ade23496cb827ad72/648c07a794aaad449a56108c_Product-main-01.jpg',
             imageAlt: "Front of men's Basic Tee in black.",
-            price: '$20',
-            color: 'Green',
+            price: '$20'
+                
         },
         {
             id: 4,
-            name: 'Basic Tee',
+            name: 'Anti-aging Serum',
             href: '#',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg',
+            imageSrc: 'https://assets.website-files.com/6489a11ade23496cb827ad72/648c24355ec7e188660d074a_Product-main-02.jpg',
             imageAlt: "Front of men's Basic Tee in black.",
-            price: '$70',
-            color: 'Black',
+            price: '$70'
+            
         },
         {
             id: 5,
-            name: 'Basic Tee',
+            name: 'Clear Cleansing Gel',
             href: '#',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
+            imageSrc: 'https://assets.website-files.com/6489a11ade23496cb827ad72/648c262f5ba5eec89612ea2c_Product-main-03.jpg',
             imageAlt: "Front of men's Basic Tee in black.",
-            price: '$53',
-            color: 'Yellow',
+            price: '$53'
+            
         },
+        {
+            id: 6,
+            name: 'Mist Toner',
+            href: '#',
+            imageSrc: 'https://assets.website-files.com/6489a11ade23496cb827ad72/648c2a146ce8487e75d83b3f_Product-main-05.jpg',
+            price: '$36.79'
+        },
+        {
+            id: 7,
+            name: 'Hydrating Face Mist',
+            href: '#',
+            imageSrc: 'https://assets.website-files.com/6489a11ade23496cb827ad72/648c2df1bbd93dbadbd294ce_product-main-19.jpg',
+            price: '$42'
+        },
+        {
+            id: 8,
+            name: 'Midnight Perfume',
+            href: '#',
+            imageSrc: 'https://assets.website-files.com/6489a11ade23496cb827ad72/648c2da1c7e4396e9391d21a_product-main-18.jpg',
+            price: '$71.53'
+        },
+        {
+            id: 9,
+            name: 'Volume Mascara',
+            href: '#',
+            imageSrc: 'https://assets.website-files.com/6489a11ade23496cb827ad72/648c2def64f58674cfdb7715_product-main-20.jpg',
+            price: '$63'
+        },
+        {
+            id: 10,
+            name: 'Divine Orchid',
+            href: '#',
+            imageSrc: 'https://assets.website-files.com/6489a11ade23496cb827ad72/648c2dcc428f7f901c435305_product-main-21.jpg',
+            price: '$96'
+        },
+        {
+            id: 11,
+            name: 'Brow Perfection Pencil',
+            href: '#',
+            imageSrc: 'https://assets.website-files.com/6489a11ade23496cb827ad72/648c2ff21cc95fe10289484e_product-main-17-p-1080.jpg',
+            price: '$40.79'
+        },
+        {
+            id: 12,
+            name: 'Bliss Sleep Mask',
+            href: '#',
+            imageSrc: 'https://assets.website-files.com/6489a11ade23496cb827ad72/648c2d4eff7925b6249537b0_Product-main-10.jpg',
+            price: '$56.79'
+        }
     ]
     return (
         <div className="bg-white">

@@ -13,6 +13,7 @@ import { ShopPage } from './pages/ShopPage.js';
 import { Footer } from './components/Footer.js';
 import { ShoppingCart } from './components/ShoppingCart.js';
 import { ContactPage } from './pages/ContactPage.js';
+import { RegisterFom } from './components/signUpForm/RegisterForm.js';
 
 
 function App(props) {
@@ -20,7 +21,7 @@ function App(props) {
   console.log(user)
   return (
     <BoutiqueContext.Provider value={{user}}>
-    <main className="App">
+    <main>
       <Navbar2/>
       { user? (
         <>
@@ -39,6 +40,7 @@ function App(props) {
             <Route path="/shop" element={<ShopPage/>}/>
             <Route path="/shop/cart" element={<ShoppingCart/>}/>
             <Route path="/contact" element={<ContactPage/>}/>
+            <Route path="/register" element={<RegisterFom/>}/>
           </Routes>
           {/* <AuthPage user={user} setUser={setUser}/> */}
         </>
