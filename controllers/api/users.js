@@ -14,6 +14,30 @@ async function create(req, res){
     }
 }
 
+async function getUsers(req, res){
+    try {
+        const users = await User.find({})
+        
+        console.log(users)
+        
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}
+
+async function getSingleUser(req, res){
+    const { id } = req.params
+    try {
+        const user = await User.findById(id)
+        
+        console.log(user)
+        
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}
+
+
 async function login(req, res){
     try {
         const user = await User.findOne({email: req.body.email})

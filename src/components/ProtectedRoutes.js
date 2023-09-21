@@ -6,5 +6,5 @@ export const ProtectedRoutes = () => {
     const ctx = useContext(BoutiqueContext)
     const { user } = ctx
     
-    return user? <Outlet/> :<Navigate to="/"/>
+    return user? <Outlet/> :<Navigate to="/login"/>
 }

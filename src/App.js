@@ -18,6 +18,7 @@ import { HomePage } from './pages/HomePage.js';
 import { ProtectedRoutes } from './components/ProtectedRoutes.js';
 import SignInForm from './components/logginForm/SignInForm.js';
 import { Dashboard } from './pages/Dashboard.js';
+import { UpdateProfile } from './components/UpdateProfile.js';
 
 
 function App(props) {
@@ -31,17 +32,17 @@ function App(props) {
             <Route element={<ProtectedRoutes/>}>
               <Route path="/orders" element={<OrderHistoryPage/>}/>
               <Route path="/orders/new" element={<NewOrderPage/>} />
-              <Route path="/dashboard" element={<Dashboard/>}/>
+              
+              <Route path="/account" element={<Dashboard/>}/>
+              <Route path="/update" element={<UpdateProfile/>}/>
             </Route>
             <Route path="/" element={<HomePage/>} />
             <Route path="/about" element={<AboutPage/>} />
-            <Route path="/account" element={<AuthPage/>} />
             <Route path="/shop/cart" element={<ShoppingCart/>}/>
             <Route path="/shop" element={<ShopPage/>}/>
             <Route path="/contact" element={<ContactPage/>}/>
             <Route path="/register" element={<RegisterFom/>}/>
             <Route path="/login" element={<SignInForm/>}/>
-            
             
           </Routes>
         <Footer/>

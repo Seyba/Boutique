@@ -45,6 +45,9 @@ export function checkToken(){
   return sendRequest(`${BASE_URL}/check-token`);
 }
 
+export function updateUser(userData){
+  return sendRequest(BASE_URL, 'PUT', userData)
+}
 
 async function sendRequest(url, method = "GET", payload = null) {
   // Fetch accepts an options object as the 2nd argument
