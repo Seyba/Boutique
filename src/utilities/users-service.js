@@ -9,10 +9,10 @@ export async function signUp (userData){
 }
 export async function login(credentials){
   const token = await userAPI.login(credentials)
-    localStorage.setItem('SEIToken', token)
+  localStorage.setItem('SEIToken', token)
 
-    return getUser()
-}
+  return getUser()
+} 
 
 
 export function getToken() {

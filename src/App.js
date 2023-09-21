@@ -16,6 +16,8 @@ import { ContactPage } from './pages/ContactPage.js';
 import { RegisterFom } from './components/signUpForm/RegisterForm.js';
 import { HomePage } from './pages/HomePage.js';
 import { ProtectedRoutes } from './components/ProtectedRoutes.js';
+import SignInForm from './components/logginForm/SignInForm.js';
+import { Dashboard } from './pages/Dashboard.js';
 
 
 function App(props) {
@@ -29,6 +31,7 @@ function App(props) {
             <Route element={<ProtectedRoutes/>}>
               <Route path="/orders" element={<OrderHistoryPage/>}/>
               <Route path="/orders/new" element={<NewOrderPage/>} />
+              <Route path="/dashboard" element={<Dashboard/>}/>
             </Route>
             <Route path="/" element={<HomePage/>} />
             <Route path="/about" element={<AboutPage/>} />
@@ -37,6 +40,9 @@ function App(props) {
             <Route path="/shop" element={<ShopPage/>}/>
             <Route path="/contact" element={<ContactPage/>}/>
             <Route path="/register" element={<RegisterFom/>}/>
+            <Route path="/login" element={<SignInForm/>}/>
+            
+            
           </Routes>
         <Footer/>
       </main>
