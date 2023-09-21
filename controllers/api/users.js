@@ -32,8 +32,20 @@ async function login(req, res){
 }
 
 async function updateUser(req, res){
+    const { id } = req.params
     try {
-        const user = await User.findOne({email: req.body.email})
+        const user = await User.findByIdAndUpdate(id, req.body,{new: true})
+        res.json(user)
+    } catch (error) {
+        console.log(error)
+        res.status(404).json(error)
+    }
+}
+async function unSubscribe(req, res){
+    const { id } = req.params
+    try {
+        const user = await User.findByIdAndDelete(id)
+        res.json(user)
     } catch (error) {
         console.log(error)
         res.status(404).json(error)
@@ -48,4 +60,4 @@ async function checkToken(req, res) {
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
-module.exports = {create, login, checkToken, updateUser}
+module.exports = {create, login, checkToken, updateUser, unSubscribe}
