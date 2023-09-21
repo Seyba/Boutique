@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import * as userService from '../utilities/users-service'
 
 const OrderHistoryPage = (props) => {
+    console.log('order history page')
     const handleCheckToken = async () => {
         userService.checkToken()
         const expDate = await userService.checkToken()

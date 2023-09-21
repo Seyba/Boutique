@@ -31,6 +31,15 @@ async function login(req, res){
     }
 }
 
+async function updateUser(req, res){
+    try {
+        const user = await User.findOne({email: req.body.email})
+    } catch (error) {
+        console.log(error)
+        res.status(404).json(error)
+    }
+}
+
 async function checkToken(req, res) {
     // req.user will always be there for you when a token is 
     console.log('req.user', req.user);
@@ -39,4 +48,4 @@ async function checkToken(req, res) {
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
-module.exports = {create, login, checkToken}
+module.exports = {create, login, checkToken, updateUser}

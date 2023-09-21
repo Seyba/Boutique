@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+module.exports = withMT({
     content: [
       "./src/**/*.{html,js}", 
       "./node_modules/tw-elements-react/dist/js/**/*.js"
@@ -12,4 +14,4 @@ module.exports = {
       require("tw-elements-react/dist/plugin.cjs" ),
       require('tailwindcss-animated')
     ]
-}
+})

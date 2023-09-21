@@ -21,7 +21,7 @@ function App(props) {
   const [user, setUser] = useState(getUser())
   console.log(user)
   return (
-    <BoutiqueContext.Provider value={{user}}>
+    <BoutiqueContext.Provider value={{user, setUser}}>
     <main>
       <Navbar2/>
       { user? (
@@ -29,8 +29,8 @@ function App(props) {
           <Navbar user={user} setUser={setUser}/>
           
           <Routes>
-            <Route path="/orders/new" element={<NewOrderPage/>} />
             <Route path="/orders" element={<OrderHistoryPage/>} />
+            <Route path="/orders/new" element={<NewOrderPage/>} />
           </Routes>
         </>
       ): (
@@ -46,7 +46,7 @@ function App(props) {
           </Routes>
           {/* <AuthPage user={user} setUser={setUser}/> */}
         </>
-        
+         
       )}
       <Footer/>
     </main>

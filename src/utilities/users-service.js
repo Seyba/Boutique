@@ -2,10 +2,10 @@ import * as userAPI from './users-api'
 
 export async function signUp (userData){
     
-    const token = await userAPI.signUp(userData)
-    localStorage.setItem('SEIToken', token)
+  const token = await userAPI.signUp(userData)
+  localStorage.setItem('SEIToken', token)
 
-    return getUser()
+  return getUser()
 }
 export async function login(credentials){
   const token = await userAPI.login(credentials)
