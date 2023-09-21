@@ -4,8 +4,10 @@ import { signUp } from '../../utilities/users-service'
 import { BoutiqueContext } from '../../context/boutiqueContext';
 import { TEInput, TERipple } from "tw-elements-react";
 import { Button } from "@material-tailwind/react";
+import { useNavigate } from 'react-router-dom';
 
 export function RegisterFom() {
+  const navigate = useNavigate()
   const ctx = useContext(BoutiqueContext)
   const { setUser } = ctx
   const [formData, setFormData] = useState({
@@ -31,6 +33,7 @@ export function RegisterFom() {
         const user =  await signUp(userFormData)
         setUser(user)
         console.log(user)
+        navigate('/account')
       } catch (error) {
         setFormData({
           ...formData,

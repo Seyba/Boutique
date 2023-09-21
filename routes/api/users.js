@@ -9,6 +9,7 @@ router.post('/login', usersCtrl.login);
 router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
 router.put('/:id', usersCtrl.updateUser)
 router.delete('/:id', usersCtrl.unSubscribe)
-
+router.get('/', usersCtrl.getUsers)
+router.get('/:id', usersCtrl.getSingleUser)
 
 module.exports = router;

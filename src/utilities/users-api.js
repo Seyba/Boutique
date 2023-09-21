@@ -16,6 +16,15 @@ const BASE_URL = '/api/users'
 //         throw new Error('Invalid Sign Up!!')
 //     }
 // }
+// export async  function fetchAllUsers(){
+//   console.log('ALL USERS')
+//   const res = await fetch(BASE_URL)
+//   if(res.ok){
+//     return res.JSON()
+//   }else{
+//     throw new Error('Data Not Found!!!')
+//   }
+// }
 
 // export async function login(credentials) {
 //     console.log('API USER-DATA', credentials);
@@ -47,6 +56,13 @@ export function checkToken(){
 
 export function updateUser(userData){
   return sendRequest(BASE_URL, 'PUT', userData)
+}
+export function getUsers(){
+  return sendRequest(BASE_URL)
+}
+
+export function getSingleUser(id){
+  return sendRequest(`${BASE_URL}/${id}`)
 }
 
 async function sendRequest(url, method = "GET", payload = null) {

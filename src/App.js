@@ -1,4 +1,4 @@
-import { useState  } from 'react';
+import { useState, useEffect  } from 'react';
 import Navbar from './components/Navbar.js'
 import './App.css';
 import NewOrderPage from './pages/NewOrderPage'
@@ -6,6 +6,8 @@ import AuthPage from './pages/AuthPage';
 import { Routes, Route} from 'react-router-dom'
 import OrderHistoryPage from './pages/OrderHistoryPage';
 import { getUser } from './utilities/users-service.js';
+import * as usersAPI from './utilities/users-api.js'
+import { getUsers } from './utilities/users-api.js';
 import { Navbar2 } from './components/Navbar2.js';
 import { AboutPage } from './pages/AboutPage.js'
 import {BoutiqueContext} from './context/boutiqueContext'
@@ -19,20 +21,39 @@ import { ProtectedRoutes } from './components/ProtectedRoutes.js';
 import SignInForm from './components/logginForm/SignInForm.js';
 import { Dashboard } from './pages/Dashboard.js';
 import { UpdateProfile } from './components/UpdateProfile.js';
-
+import { UsersList } from './components/UsersList.js';
+import { UserPage } from './pages/UserPage.js';
 
 function App(props) {
+  
   const [user, setUser] = useState(getUser())
-  console.log(user)
+  const [users, setUsers] = useState([])
+  const [userById, setUserById] = useState([])
+
+  // console.log(users)
+  useEffect(() => {
+    const  getAllUsers = async () => {
+      const allUsers = await usersAPI.getUsers()
+      setUsers(allUsers)
+    }
+    const  getUserById = async (id) => {
+      const usr = await usersAPI.getSingleUser(id)
+      setUserById(usr)
+      
+    }
+    const usrId = '650c6584fd585d8a12b52f16'
+    getAllUsers()
+    getUserById(usrId)
+  },[])
+  
   return (
-    <BoutiqueContext.Provider value={{user, setUser}}>
+    <BoutiqueContext.Provider value={{user, setUser, users}}>
       <main>
         <Navbar2/>
           <Routes>
             <Route element={<ProtectedRoutes/>}>
               <Route path="/orders" element={<OrderHistoryPage/>}/>
               <Route path="/orders/new" element={<NewOrderPage/>} />
-              
               <Route path="/account" element={<Dashboard/>}/>
               <Route path="/update" element={<UpdateProfile/>}/>
             </Route>
@@ -43,7 +64,8 @@ function App(props) {
             <Route path="/contact" element={<ContactPage/>}/>
             <Route path="/register" element={<RegisterFom/>}/>
             <Route path="/login" element={<SignInForm/>}/>
-            
+            <Route path="/users" element={<UsersList/>}/>
+            <Route path="/users/:id" element={<UserPage/>}/>
           </Routes>
         <Footer/>
       </main>

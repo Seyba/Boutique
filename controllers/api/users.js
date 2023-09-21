@@ -12,13 +12,14 @@ async function create(req, res){
     } catch (error) {
         res.status(400).json(error)
     }
-}
+} 
 
 async function getUsers(req, res){
     try {
         const users = await User.find({})
         
         console.log(users)
+        res.json(users)
         
     } catch (error) {
         res.status(400).json(error)
@@ -30,7 +31,7 @@ async function getSingleUser(req, res){
     try {
         const user = await User.findById(id)
         
-        console.log(user)
+        res.json(user)
         
     } catch (error) {
         res.status(400).json(error)
@@ -84,4 +85,4 @@ async function checkToken(req, res) {
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
-module.exports = {create, login, checkToken, updateUser, unSubscribe}
+module.exports = {create, login, getSingleUser, getUsers, checkToken, updateUser, unSubscribe}
