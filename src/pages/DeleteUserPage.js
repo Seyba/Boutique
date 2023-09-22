@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import * as userAPI from '../utilities/users-api'
 
-export const UserPage = () => {
+export const DeleteUserPage = () => {
     const [user, setUser] = useState([])
 
     const {id} = useParams()
@@ -18,10 +18,8 @@ export const UserPage = () => {
 
     return(
         <div>
-            <h2>Users Page</h2>
-            <h4>{user.name}</h4>
-            <h4>{user.email}</h4>
-            <h4>{user.createdAt}</h4>
+            <h2>Delete User Account Page</h2>
+            
         </div>
     )
 }

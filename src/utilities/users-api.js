@@ -54,8 +54,11 @@ export function checkToken(){
   return sendRequest(`${BASE_URL}/check-token`);
 }
 
-export function updateUser(userData){
-  return sendRequest(BASE_URL, 'PUT', userData)
+export function updateUser(user, id){
+  return sendRequest(`${BASE_URL}/${id}`, 'PUT', user)
+}
+export function removeUser(id){
+  return sendRequest(`${BASE_URL}/${id}`)
 }
 export function getUsers(){
   return sendRequest(BASE_URL)

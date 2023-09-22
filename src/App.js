@@ -23,6 +23,7 @@ import { Dashboard } from './pages/Dashboard.js';
 import { UpdateProfile } from './components/UpdateProfile.js';
 import { UsersList } from './components/UsersList.js';
 import { UserPage } from './pages/UserPage.js';
+import { DeleteUserPage } from './pages/DeleteUserPage.js';
 
 function App(props) {
   
@@ -66,6 +67,8 @@ function App(props) {
             <Route path="/login" element={<SignInForm/>}/>
             <Route path="/users" element={<UsersList/>}/>
             <Route path="/users/:id" element={<UserPage/>}/>
+            <Route path="/users/:id/edit" element={<UpdateProfile/>}/>
+            <Route path="/users/:id/delete" element={<DeleteUserPage/>}/>
           </Routes>
         <Footer/>
       </main>

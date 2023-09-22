@@ -11,8 +11,10 @@ export const UsersList = () => {
             <h2>Users List</h2>
             <ul>
                 {
-                    users.length > 0 ? users.map(user => <li>
-                        <Link to={`/users/${user._id}`}>{user.name}</Link>
+                    users.length > 0 ? users.map(user => <li key={user._id}>
+                        <div><Link to={`/users/${user._id}/delete`}>Delete</Link></div>
+                        <div><Link to={`/users/${user._id}`}>{user.name}</Link></div>
+                        <div><Link to={`/users/${user._id}/edit`}>Update</Link></div>
                     </li>
                         
                     ):(
