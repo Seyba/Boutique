@@ -86,10 +86,20 @@ async function addCartItem(req, res){
 }
 
 async function removeCartItem(req, res){
-    const { id } = req.params
+    const userId = req.params.userId;
+    const productId = req.params.itemId;
     try {
-        const item = await Cart.findByIdAndDelete(id)
-        res.json(item)
+        let cart = await Cart.findOne({userId});
+        let itemIndex = cart.items.findIndex(p => p.productId === productId);
+        if(itemIndex > -1){
+            let productItem = cart.items[itemIndex];
+            cart.bill -= productItem.quantity*productItem.price;
+            cart.items.splice(itemIndex,1);
+        }
+
+        cart = await cart.save();
+        return res.status(201).json(cart);
+        
     } catch (error) {
         console.log(error)
         res.status(500).json({msg: "Something went wrong"});
