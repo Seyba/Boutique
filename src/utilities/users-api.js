@@ -58,7 +58,7 @@ export function updateUser(user, id){
   return sendRequest(`${BASE_URL}/${id}`, 'PUT', user)
 }
 export function removeUser(id){
-  return sendRequest(`${BASE_URL}/${id}`)
+  return sendRequest(`${BASE_URL}/${id}`, 'DELETE')
 }
 export function getUsers(){
   return sendRequest(BASE_URL)
