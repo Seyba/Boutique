@@ -24,6 +24,7 @@ import { UpdateProfile } from './components/UpdateProfile.js';
 import { UsersList } from './components/UsersList.js';
 import { UserPage } from './pages/UserPage.js';
 import { DeleteUserPage } from './pages/DeleteUserPage.js';
+import { ProductForm } from './components/product/ProductForm.js';
 
 function App(props) {
   
@@ -69,6 +70,7 @@ function App(props) {
             <Route path="/users/:id" element={<UserPage/>}/>
             <Route path="/users/:id/edit" element={<UpdateProfile/>}/>
             <Route path="/users/:id/delete" element={<DeleteUserPage/>}/>
+            <Route path="/products/create" element={<ProductForm/>}/>
           </Routes>
         <Footer/>
       </main>
