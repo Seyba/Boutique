@@ -27,6 +27,9 @@ app.use(express.static(path.join(__dirname, 'build')));
 //* API routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/items', require('./routes/api/items'));
+app.use('/api/cart', require('./routes/api/cart'));
+app.use('/api/order', require('./routes/api/order'));
+
 
 
 app.get('/*', function(req, res) {

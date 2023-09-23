@@ -12,7 +12,7 @@ import { Navbar2 } from './components/Navbar2.js';
 import { AboutPage } from './pages/AboutPage.js'
 import {BoutiqueContext} from './context/boutiqueContext'
 import { ShopPage } from './pages/ShopPage.js';
-import { fetchProducts } from './utilities/items-api'
+import { fetchProducts, fetchProductById } from './utilities/items-api'
 import { Footer } from './components/Footer.js';
 import { ShoppingCart } from './components/ShoppingCart.js';
 import { ContactPage } from './pages/ContactPage.js';
@@ -42,6 +42,8 @@ function App(props) {
     }
     const  getUserById = async (id) => {
       const usr = await usersAPI.getSingleUser(id)
+      const prodById = await fetchProductById(id)
+      //console.log(prodById)
       setUserById(usr)
       
     }
@@ -49,7 +51,7 @@ function App(props) {
       const prods = await fetchProducts()
       setProducts(prods)
     }
-    const usrId = '650c6584fd585d8a12b52f16'
+    const usrId = '650ef188ac26e5024eb9b71f'
     getAllUsers()
     getUserById(usrId)
     getAllProds()

@@ -15,6 +15,8 @@ export function ProductForm() {
     description: '',
     category: '',
     price: '',
+    imgSrc: '',
+    imgAlt: '',
     error: ''
     
   })
@@ -94,6 +96,38 @@ export function ProductForm() {
                 type="text"
                 name="category"
                 value={formData.category}
+                onChange={handleChange}
+                required
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="category" className="block text-sm font-medium leading-6 text-gray-900">
+              Image Source
+            </label>
+            <div className="mt-2">
+              <input
+                type="text"
+                name="imgSrc"
+                value={formData.imgSrc}
+                onChange={handleChange}
+                required
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="category" className="block text-sm font-medium leading-6 text-gray-900">
+              Image Alt
+            </label>
+            <div className="mt-2">
+              <input
+                type="text"
+                name="imgAlt"
+                value={formData.imgAlt}
                 onChange={handleChange}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
