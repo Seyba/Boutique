@@ -12,6 +12,7 @@ import { Navbar2 } from './components/Navbar2.js';
 import { AboutPage } from './pages/AboutPage.js'
 import {BoutiqueContext} from './context/boutiqueContext'
 import { ShopPage } from './pages/ShopPage.js';
+import { fetchProducts } from './utilities/items-api'
 import { Footer } from './components/Footer.js';
 import { ShoppingCart } from './components/ShoppingCart.js';
 import { ContactPage } from './pages/ContactPage.js';
@@ -30,6 +31,7 @@ function App(props) {
   
   const [user, setUser] = useState(getUser())
   const [users, setUsers] = useState([])
+  const [products, setProducts] = useState([])
   const [userById, setUserById] = useState([])
 
   // console.log(users)
@@ -43,13 +45,18 @@ function App(props) {
       setUserById(usr)
       
     }
+    const getAllProds = async () => {
+      const prods = await fetchProducts()
+      setProducts(prods)
+    }
     const usrId = '650c6584fd585d8a12b52f16'
     getAllUsers()
     getUserById(usrId)
+    getAllProds()
   },[])
   
   return (
-    <BoutiqueContext.Provider value={{user, setUser, users}}>
+    <BoutiqueContext.Provider value={{setUser, products, user, users}}>
       <main>
         <Navbar2/>
           <Routes>

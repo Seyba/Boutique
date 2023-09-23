@@ -1,6 +1,6 @@
 import { useState, useContext} from 'react'
 import { Link } from "react-router-dom";
-import { addProduct, addNewItem } from '../../utilities/items-api'
+import { addProduct } from '../../utilities/items-api'
 import { BoutiqueContext } from '../../context/boutiqueContext';
 import { TEInput, TERipple } from "tw-elements-react";
 import { Button } from "@material-tailwind/react";
@@ -26,14 +26,8 @@ export function ProductForm() {
         
         const productData = {...formData}
         const prod = await addProduct(productData)
-        // delete userFormData.error
-        // delete userFormData.confirm
 
-        // const user =  await signUp(userFormData)
-        // setUser(user)
-        console.log(prod)
-
-        //navigate('/account')
+        navigate('/shop')
       } catch (error) {
         setFormData({
           ...formData,
