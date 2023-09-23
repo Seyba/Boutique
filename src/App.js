@@ -26,6 +26,7 @@ import { UsersList } from './components/UsersList.js';
 import { UserPage } from './pages/UserPage.js';
 import { DeleteUserPage } from './pages/DeleteUserPage.js';
 import { ProductForm } from './components/product/ProductForm.js';
+import { ProductDetailsPage } from './pages/ProductDetailsPage'
 
 function App(props) {
   
@@ -70,8 +71,9 @@ function App(props) {
             </Route>
             <Route path="/" element={<HomePage/>} />
             <Route path="/about" element={<AboutPage/>} />
-            <Route path="/shop/cart" element={<ShoppingCart/>}/>
             <Route path="/shop" element={<ShopPage/>}/>
+            <Route path="/shop/cart" element={<ShoppingCart/>}/>
+            <Route path="/shop/:id" element={<ProductDetailsPage/>}/>
             <Route path="/contact" element={<ContactPage/>}/>
             <Route path="/register" element={<RegisterFom/>}/>
             <Route path="/login" element={<SignInForm/>}/>
