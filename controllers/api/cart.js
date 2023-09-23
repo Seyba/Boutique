@@ -15,29 +15,27 @@ async function fetchCartItems(req, res){
     }
 }
 
-async function fetchCartItemById(req, res){
-    const { id } = req.params
+async function removeCartItem(req, res){
+    const userId = req.params.userId;
+    const productId = req.params.itemId;
     try {
-        const item = await Cart.findById(id)
-        
-        res.json(item)
+        let cart = await Cart.findOne({userId});
+        let itemIndex = cart.items.findIndex(p => p.productId === productId);
+        if(itemIndex > -1){
+            let productItem = cart.items[itemIndex];
+            cart.bill -= productItem.quantity*productItem.price;
+            cart.items.splice(itemIndex,1);
+        }
+
+        cart = await cart.save();
+        return res.status(201).json(cart);
         
     } catch (error) {
-        res.status(400).json(error)
+        console.log(error)
+        res.status(500).json({msg: "Something went wrong"});
     }
 }
 
-async function updateCartItem(req, res){
-    const { id } = req.params
-    try {
-        const item = await Cart.findByIdAndUpdate(id, req.body,{new: true})
-        console.log(item)
-        res.json(item)
-    } catch (error) {
-        console.log(error)
-        res.status(404).json(error)
-    }
-}
 
 async function addCartItem(req, res){
     const userId = req.params
@@ -85,27 +83,33 @@ async function addCartItem(req, res){
     }
 }
 
-async function removeCartItem(req, res){
-    const userId = req.params.userId;
-    const productId = req.params.itemId;
+/*
+async function fetchCartItemById(req, res){
+    const { id } = req.params
     try {
-        let cart = await Cart.findOne({userId});
-        let itemIndex = cart.items.findIndex(p => p.productId === productId);
-        if(itemIndex > -1){
-            let productItem = cart.items[itemIndex];
-            cart.bill -= productItem.quantity*productItem.price;
-            cart.items.splice(itemIndex,1);
-        }
-
-        cart = await cart.save();
-        return res.status(201).json(cart);
+        const item = await Cart.findById(id)
+        
+        res.json(item)
         
     } catch (error) {
-        console.log(error)
-        res.status(500).json({msg: "Something went wrong"});
+        res.status(400).json(error)
     }
 }
 
+async function updateCartItem(req, res){
+    const { id } = req.params
+    try {
+        const item = await Cart.findByIdAndUpdate(id, req.body,{new: true})
+        console.log(item)
+        res.json(item)
+    } catch (error) {
+        console.log(error)
+        res.status(404).json(error)
+    }
+}
+*/
 
 
-module.exports = {addCartItem, fetchCartItemById, fetchCartItems, removeCartItem, updateCartItem}
+
+
+module.exports = {addCartItem, fetchCartItems, removeCartItem}

@@ -39,7 +39,7 @@ async function updateItem(req, res){
 async function addItem(req, res){
     const newItem = req.body
     try {
-        const insertedItem = await Item.inserOne(newItem)
+        const insertedItem = await Item.create(newItem)
         console.log(insertedItem)
         res.json(insertedItem)
     } catch (error) {
