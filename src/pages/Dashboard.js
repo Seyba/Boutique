@@ -7,9 +7,14 @@ export const Dashboard = () => {
     const { user } = ctx
     return(
         <div>
-            <h2>Dashboard</h2>
+            <section className="flex justify-center py-28 bg-red-50">
+                <div>
+                    <h2 className="text-5xl font-thin">Dashboard</h2>
+                </div>
+            </section>
+            
             {user && (<h3>Hi, {user.name}</h3>)}
-            <Link to="/users">Users</Link>
+            <Link to="/users">Customers</Link>
             
             <UserLogOut/>
         </div>

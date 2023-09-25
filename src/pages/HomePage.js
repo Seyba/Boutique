@@ -3,9 +3,8 @@ import { Link } from "react-router-dom"
 export const HomePage = () => {
     return(
         <div>
-            <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                <h2>Home Page</h2>
-                <CarouselEl/>
+            <CarouselEl/>
+            <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">                
                 <div className="bg-white-100 py-32 md:px-64 px-4">
                     <p className="md:text-4xl text-2xl md:leading-relaxed text-center font-thin">
                     Boutique is  believe in providing a personalized shopping experience and exceptional customer service, just like you would expect from a physical boutique.

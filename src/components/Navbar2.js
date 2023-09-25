@@ -13,13 +13,14 @@ import { Badge} from "@material-tailwind/react";
 export const Navbar2 = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [openCart, setOpenCart] = useState(false)
+  const styleBr = {fontFamily: 'Caveat', fontSize: '50px'}
   return (
     <header className="bg-white-100">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Boutique</span>
-            <h3 className="text-4xl font-semibold">Boutique</h3>
+            <h3 className="text-4xl font-semibold"><span style={styleBr}>Boutique</span></h3>
           </Link>
         </div>
         <div className="flex lg:hidden">
