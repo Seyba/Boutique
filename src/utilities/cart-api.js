@@ -2,7 +2,6 @@ import sendRequest from './send-request.js'
 
 const BASE_URL = '/api/cart'
 
-
 export function addToCart(id, prodId, quantity) {
   console.log('adding product to cart')
   return sendRequest(`${BASE_URL}/${id}`, 'POST', {prodId, quantity})

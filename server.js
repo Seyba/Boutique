@@ -4,7 +4,8 @@ const favicon = require('serve-favicon')
 const logger = require('morgan')
 require('dotenv').config()
 const databaseConnection = require('./config/database')
-const User = require('./models/user')
+const ensureLoggedIn = require('./config/ensureLoggedIn');
+
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -28,9 +29,12 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/items', require('./routes/api/items'));
 app.use('/api/cart', require('./routes/api/cart'));
-app.use('/api/order', require('./routes/api/order'));
 
 
+app.use('/api/orders', ensureLoggedIn, require('./routes/api/order'))
+app.use('/api/products', ensureLoggedIn, require('./routes/api/product'))
+
+app.use('/api/shoppingcart', require('./routes/api/shoppingCart'))
 
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));

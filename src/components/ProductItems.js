@@ -1,36 +1,4 @@
-import { useEffect, useState } from "react"
-import { useContext } from 'react'
-import { BoutiqueContext } from "../context/boutiqueContext"
-import { useParams } from "react-router-dom"
-import { fetchProductById } from "../utilities/items-api"
-import { addToCart } from "../utilities/cart-api"
-import { addItemToCart } from "../utilities/shoppingCart-api"
-import { TERipple } from "tw-elements-react"
-
-export const ProductDetailsPage = () => {
-    const ctx = useContext(BoutiqueContext)
-    const { user } = ctx
-    const [product, setProduct] = useState([])
-    const { id } = useParams()
-    const userId = user._id
-
-    const { title, price, description, category, date_added, imgSrc, imgAlt } = product
-    
-    useEffect(()=> {
-        const getProdById = async(id)=> {
-            const prod = await fetchProductById(id)
-            setProduct(prod)
-        }
-        getProdById(id)
-        
-    },[])
-    // const handleChange = e => {
-
-    // }
-
-    const handleAddCart = async (userId, prodId)=> {
-        await addToCart(userId, prodId, 1)
-    }
+export const ProductItems = () => {
     return(
         <div className="bg-white">
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -83,8 +51,6 @@ export const ProductDetailsPage = () => {
                     </div>
                 </div>
             </div>
-            
-            
         </div>
     )
 }
