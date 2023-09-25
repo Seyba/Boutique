@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react"
+import { useContext, useState, useEffect, useRef } from "react"
 import { BoutiqueContext } from "../../context/boutiqueContext"
 import { ProductItems } from "./ProductItems"
 import { Link } from "react-router-dom"
@@ -9,13 +9,27 @@ export const ProductList = () => {
     const ctx = useContext(BoutiqueContext)
     const { newArrivals, user } = ctx
     const [products, setProducts] = useState({})
+    const categoriesRef = useRef([]);
+    const [activeCat, setActiveCat] = useState('');
+    const [cart, setCart] = useState(null)
 
     useEffect(() => {
         async function getProds(){
             const prods = await productsAPI.getAll()
+            
+            categoriesRef.current = prods.reduce((cats, item) => {
+                const cat = item.category.name;
+                return cats.includes(cat) ? cats : [...cats, cat];
+            }, []);
             setProducts(prods)
+            setActiveCat(categoriesRef.current[0]);
         }
+        // async function fetchUserCart(){
+        //     const usrCrt = await ordersAPI.getCart()
+        //     console.log('USER CART IS:',usrCrt)
+        // }
         getProds()
+        //fetchUserCart()
     },[])
     const handleAddToCart = async()=> {
         const updatedCart = await ordersAPI.addItemToCart()
