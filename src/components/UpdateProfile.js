@@ -17,7 +17,6 @@ export const UpdateProfile = () => {
     useEffect(()=>{
         const getUserById = async (id) => {
             const user = await userAPI.getSingleUser(id)
-            console.log(user)
             setUser(user)
         }
         getUserById(id)
@@ -34,10 +33,8 @@ export const UpdateProfile = () => {
                 name: user.name,
                 email: user.email
             }
-            console.log(userData)
 
             const newData = await userAPI.updateUser(userData, id)
-            console.log(newData)
             navigate('/')
         } catch (error) {
             console.log('not updated')

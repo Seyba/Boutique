@@ -18,7 +18,6 @@ export const UpdateProduct = () => {
     useEffect(()=>{
         const getItemById = async (id) => {
             const itemToBeUpd = await itemAPI.fetchProductById(id)
-            //console.log('ITEM', item)
             setItem(itemToBeUpd)
         }
         getItemById(id)
@@ -39,10 +38,8 @@ export const UpdateProduct = () => {
                 imgAlt: item.imgAlt,
                 price: item.price
             }
-            console.log(itemData)
 
             const newData = await itemAPI.updateProduct(id, itemData)
-            console.log(newData)
             navigate('/')
         } catch (error) {
             console.log('not updated')
