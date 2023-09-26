@@ -12,11 +12,22 @@ export const Dashboard = () => {
                     <h2 className="text-5xl font-thin">Dashboard</h2>
                 </div>
             </section>
+            <div className="flex justify-around py-32">
+                <div>
+                    <Link className="text-xl font-semibold hover:text-slate-400" to="/products/create">Add Products</Link>
+                </div>
+                <div>
+                    {user && (<h3>Hi, {user.name}</h3>)}
+                
+                    <Link className="text-xl font-semibold hover:text-slate-400" to="/users">Users</Link>
+                </div>
+                
+                <div>
+                    <UserLogOut />
+                </div>
+                
+            </div>
             
-            {user && (<h3>Hi, {user.name}</h3>)}
-            <Link to="/users">Customers</Link>
-            
-            <UserLogOut/>
         </div>
     )
 }

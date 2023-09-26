@@ -5,7 +5,9 @@ import { Link } from "react-router-dom"
 export const UsersList = () => {
     const ctx = useContext(BoutiqueContext)
     const { users} = ctx
-    console.log(users)
+    console.log('users are:', users)
+    
+
     return(
         <div>
             <section className="flex justify-center py-28 bg-red-50">

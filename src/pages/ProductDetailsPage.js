@@ -4,6 +4,7 @@ import { BoutiqueContext } from "../context/boutiqueContext"
 import { useParams } from "react-router-dom"
 import { fetchProductById } from "../utilities/items-api"
 import { addToCart } from "../utilities/cart-api"
+import { Link } from "react-router-dom"
 import { addItemToCart } from "../utilities/shoppingCart-api"
 import { TERipple } from "tw-elements-react"
 
@@ -31,6 +32,7 @@ export const ProductDetailsPage = () => {
     const handleAddCart = async (userId, prodId)=> {
         await addToCart(userId, prodId, 1)
     }
+
     return(
         <div className="bg-white">
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -61,6 +63,7 @@ export const ProductDetailsPage = () => {
                             >
                                 Add to Cart
                             </button>
+                            <Link to={`/shop/${id}/delete`}>Delete</Link>
                             {/* <form>
                                 <div className="flex ">
                                     <input 

@@ -13,7 +13,7 @@ export const UserLogOut = () => {
     return (
         <div >
             <div>
-                <button onClick={handleLogOut}>Log Out</button>
+                <button className="text-xl font-semibold hover:text-slate-400" onClick={handleLogOut}>Log Out</button>
             </div>
             {/* <divclassName={styles.email}>{user.email}</divclassName=>
             <button className="btn-sm" onClick={handleLogOut}>LOG OUT</button> */}

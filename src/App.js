@@ -32,7 +32,9 @@ import { ProductForm } from './components/products/ProductForm.js';
 import { ProductDetailsPage } from './pages/ProductDetailsPage'
 import { ProductList } from './components/products/ProductList.js';
 import { ProductItems } from './components/products/ProductItems.js';
-function App(props) {
+import { DeleteProduct } from './components/products/DeleteProduct.js';
+
+function App() {
   
   const [user, setUser] = useState(getUser())
   const [users, setUsers] = useState([])
@@ -101,6 +103,7 @@ function App(props) {
               <Route path="/account" element={<Dashboard/>}/>
               <Route path="/update" element={<UpdateProfile/>}/>
               <Route path="/shop/:id" element={<ProductDetailsPage/>}/>
+              <Route path="/shop/:id/delete" element={<DeleteProduct/>}/>
               <Route path="/products/list" element={<ProductList/>}/>
               <Route path="/products/list/:id" element={<ProductItems/>}/>
             </Route>
