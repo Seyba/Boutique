@@ -3,7 +3,11 @@ import { Link } from "react-router-dom"
 export const HomePage = () => {
     return(
         <div>
-            <CarouselEl/>
+            <section className="flex justify-center py-28 bg-red-50">
+                <div>
+                    <h2 className="text-5xl font-thin">Home</h2>
+                </div>
+            </section>
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">                
                 <div className="bg-white-100 py-32 md:px-64 px-4">
                     <p className="md:text-4xl text-2xl md:leading-relaxed text-center font-thin">

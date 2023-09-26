@@ -33,6 +33,7 @@ import { ProductDetailsPage } from './pages/ProductDetailsPage'
 import { ProductList } from './components/products/ProductList.js';
 import { ProductItems } from './components/products/ProductItems.js';
 import { DeleteProduct } from './components/products/DeleteProduct.js';
+import { UpdateProduct } from './components/products/UpdateProduct.js';
 
 function App() {
   
@@ -104,6 +105,7 @@ function App() {
               <Route path="/update" element={<UpdateProfile/>}/>
               <Route path="/shop/:id" element={<ProductDetailsPage/>}/>
               <Route path="/shop/:id/delete" element={<DeleteProduct/>}/>
+              <Route path="/shop/:id/edit" element={<UpdateProduct/>}/>
               <Route path="/products/list" element={<ProductList/>}/>
               <Route path="/products/list/:id" element={<ProductItems/>}/>
             </Route>

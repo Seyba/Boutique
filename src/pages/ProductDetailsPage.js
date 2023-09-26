@@ -63,7 +63,8 @@ export const ProductDetailsPage = () => {
                             >
                                 Add to Cart
                             </button>
-                            <Link to={`/shop/${id}/delete`}>Delete</Link>
+                            <Link className="text-red-600 hover:text-400"to={`/shop/${id}/delete`}>Delete</Link>
+                            <Link className="text-blue-800 hover:text-blue-600" to={`/shop/${id}/edit`}>Update</Link>
                             {/* <form>
                                 <div className="flex ">
                                     <input 

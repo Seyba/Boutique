@@ -1,10 +1,9 @@
 import { useState, useEffect, useContext} from 'react'
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import * as userAPI from '../utilities/users-api'
 import { BoutiqueContext } from '../context/boutiqueContext';
 import { TEInput, TERipple } from "tw-elements-react";
 import { Button } from "@material-tailwind/react";
-import { useNavigate } from 'react-router-dom';
 
 export const UpdateProfile = () => {
     const navigate = useNavigate()
