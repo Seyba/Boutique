@@ -19,7 +19,24 @@ const userSchema = new Schema({
         trim: true,
         minLength: 3,
         required: true
-    }
+    },
+    
+    role: {
+        type: String, 
+        default: "user"
+    },
+    isBlocked: {
+        type: Boolean,
+        default: false
+    },
+    cart: {
+        type: Array,
+        default: []
+    },
+    address: {
+        type: String
+    },
+    wishlist: [{type: Schema.Types.ObjectId, ref: "Product"}],
 }, {
     timestamps: true,
     toJSON: { transform: function(doc, ret){
