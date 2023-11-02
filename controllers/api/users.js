@@ -106,4 +106,4 @@ async function checkToken(req, res) {
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
-module.exports = {create, login, getSingleUser, getUsers, checkToken, updateUser, unSubscribe}
+module.exports = {adminLogin, create, login, getSingleUser, getUsers, checkToken, updateUser, unSubscribe}
