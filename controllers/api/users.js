@@ -93,6 +93,19 @@ async function updateUser(req, res){
         res.status(404).json(error)
     }
 }
+
+async function blockUser(req, res){
+    const { id } = req.params
+    try {
+        const userBlocked = await User.findByIdAndUpdate(id, {isBlocked: true}, {new: true})
+        res.json({
+            message: 'User is Blocked!'
+        })
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
 async function unSubscribe(req, res){
     const { id } = req.params
     try {
@@ -112,4 +125,14 @@ async function checkToken(req, res) {
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
-module.exports = {adminLogin, create, login, getSingleUser, getUsers, checkToken, updateUser, unSubscribe}
+module.exports = {
+    adminLogin, 
+    blockUser,
+    create, 
+    login, 
+    getSingleUser, 
+    getUsers, 
+    checkToken, 
+    updateUser, 
+    unSubscribe
+}
