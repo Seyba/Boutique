@@ -60,15 +60,21 @@ async function login(req, res){
 async function adminLogin(req, res){
     try {
         const { email, password} = req.body
-
+        
         //* check for user
         const admin = await User.findOne({email})
+        
+        if(admin === null) throw new Error('Not user found!')
+
         const match = await bcrypt.compare(password, admin.password)
 
         if(admin.role !== 'admin') throw new Error('Not Authorized!')
-
+        
+        
+        //console.log('admin')
         if(admin && match){
-
+            const token = createJWT(admin)
+            res.json(token)
         }
     } catch (error) {
         console.log(error)
