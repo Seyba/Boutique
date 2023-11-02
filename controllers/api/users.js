@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 
 async function create(req, res){
     try {
+        
         const user = await User.create(req.body)
         const token = createJWT(user)
         console.log(user)
@@ -45,11 +46,30 @@ async function login(req, res){
         if(!user) throw new Error()
 
         const match = await bcrypt.compare(req.body.password, user.password)
-        if(!match) throw new Error()
+        if(!match) throw new Error("Wrong Credentials!")
 
         const token = createJWT(user)
         res.json(token)
         
+    } catch (error) {
+        console.log(error)
+        res.status(404).json(error)
+    }
+}
+
+async function adminLogin(req, res){
+    try {
+        const { email, password} = req.body
+
+        //* check for user
+        const admin = await User.findOne({email})
+        const match = await bcrypt.compare(password, admin.password)
+
+        if(admin.role !== 'admin') throw new Error('Not Authorized!')
+
+        if(admin && match){
+
+        }
     } catch (error) {
         console.log(error)
         res.status(404).json(error)
