@@ -134,6 +134,22 @@ async function checkToken(req, res) {
     console.log('req.user', req.user);
     res.json(req.exp);
 }
+
+async function saveAddress(req, res, next){
+    const {_id } = req.user
+    try{
+        const user = await User.findByIdAndUpdate(
+            _id, 
+            {address: req?.body?.address}, 
+            {new: true}
+        )
+        res.json(user)
+    }catch(e){
+        res.status(404).json(e)
+    }
+
+}
+
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
@@ -145,6 +161,7 @@ module.exports = {
     login, 
     getSingleUser, 
     getUsers, 
+    saveAddress,
     unblockUser,
     updateUser, 
     unSubscribe
