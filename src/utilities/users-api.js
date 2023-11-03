@@ -71,6 +71,9 @@ export function getSingleUser(id){
   return sendRequest(`${BASE_URL}/${id}`)
 }
 
+export function saveAddress(){
+  return sendRequest(`${BASE_URL}`, 'PUT')
+}
 // async function sendRequest(url, method = "GET", payload = null) {
 //   // Fetch accepts an options object as the 2nd argument
 //   // used to include a data payload, set headers, etc.

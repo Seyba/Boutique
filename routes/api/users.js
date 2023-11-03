@@ -10,7 +10,7 @@ router.post('/admin-login', usersCtrl.adminLogin)
 router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
 router.put('/block-user/:id', ensureLoggedIn, usersCtrl.blockUser)
 router.put('/unblock-user/:id', ensureLoggedIn, usersCtrl.unblockUser)
-
+router.put('/save-address', ensureLoggedIn, usersCtrl.saveAddress)
 router.put('/:id', usersCtrl.updateUser)
 router.delete('/:id', usersCtrl.unSubscribe)
 router.get('/', usersCtrl.getUsers)
