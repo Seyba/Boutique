@@ -101,8 +101,8 @@ async function blockUser(req, res){
         res.json({
             message: 'User is Blocked!'
         })
-    } catch (error) {
-        throw new Error(error)
+    } catch (e) {
+        res.status(404).json(e)
     }
 }
 
@@ -113,8 +113,8 @@ async function unblockUser(req, res){
         res.json({
             message: 'User is Unblocked!'
         })
-    } catch (error) {
-        throw new Error(error)
+    } catch (e) {
+        res.status(404).json(e)
     }
 }
 
@@ -150,6 +150,18 @@ async function saveAddress(req, res, next){
 
 }
 
+
+async function getWishList(req, res){
+    const { _id } = req.user
+    try {
+        const user = await User.findById(_id).populate("wishlist")
+        res.json(user)
+    } catch (e) {
+        res.status(404).json(e)
+    }
+}
+
+
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
@@ -161,6 +173,7 @@ module.exports = {
     login, 
     getSingleUser, 
     getUsers, 
+    getWishList,
     saveAddress,
     unblockUser,
     updateUser, 

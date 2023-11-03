@@ -71,6 +71,10 @@ export function getSingleUser(id){
   return sendRequest(`${BASE_URL}/${id}`)
 }
 
+export function getWishList(){
+  return sendRequest(BASE_URL, 'GET')
+}
+
 export function saveAddress(){
   return sendRequest(`${BASE_URL}`, 'PUT')
 }
