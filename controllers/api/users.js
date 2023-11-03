@@ -106,6 +106,18 @@ async function blockUser(req, res){
     }
 }
 
+async function unblockUser(req, res){
+    const { id } = req.params
+    try {
+        const userUnlocked = await User.findByIdAndUpdate(id, {isBlocked: false}, {new: true})
+        res.json({
+            message: 'User is Unblocked!'
+        })
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
 async function unSubscribe(req, res){
     const { id } = req.params
     try {
@@ -128,11 +140,12 @@ function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresI
 module.exports = {
     adminLogin, 
     blockUser,
+    checkToken,
     create, 
     login, 
     getSingleUser, 
     getUsers, 
-    checkToken, 
+    unblockUser,
     updateUser, 
     unSubscribe
 }
