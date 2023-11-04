@@ -14,6 +14,55 @@ async function createProduct(req, res){
   }
 }
 
+async function getProducts(req, res) {
+  try {
+    //* filtering
+    const queryObj = {...req.query}
+    const excludeFields = ['page', 'sort', 'limit','fields']
+    excludeFields.map(el => delete queryObj[el])
+
+    let queryStr = JSON.stringify(queryObj)
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`)
+
+    let query = Product.find(JSON.parse(queryStr))
+    
+    //* sorting
+    if(req.query.sort){
+      const sortBy = req.query.sort.split(",").join(" ")
+      query = query.sort(sortBy)
+    } else {
+      query = query.sort('-createdAt')
+    }
+
+    //* Limiting the fields
+    if(req.query.fields) {
+      const fields = req.query.fields.split(",").join(" ")
+      query = query.select(fields)
+    } else {
+      query = query.select("-v__")
+    }
+
+    //* Pagination
+    const page = req.query.page
+    const limit = req.query.limit
+    const skip = (page - 1) * limit
+    console.log(page, limit, skip)
+    query = query.skip(skip).limit(limit)
+    if(req.query.page) {
+      const prodCount = await Product.countDocuments()
+      if(skip >= prodCount) throw new Error("This page does not exist!")
+    }
+    const prods = await query
+    res.json(prods)
+  } catch (e) {
+    res.status(400).json({ msg: e.message })
+  }
+  
+}
+
+
+
+
 async function getAllProducts(req, res) {
   try{
     const items = await Product.find({}).sort('name').populate('category').exec();
@@ -37,6 +86,7 @@ async function getProdById(req, res) {
 module.exports = {
   createProduct,
   getAllProducts,
-  getProdById
+  getProdById,
+  getProducts
 };
   

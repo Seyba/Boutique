@@ -6,5 +6,5 @@ const prodCtr = require('../../controllers/api/products')
 router.get('/', prodCtr.getAllProducts);
 // GET /api/products/:id
 router.get('/:id', prodCtr.getProdById);
-
+router.post('/', prodCtr.createProduct)
 module.exports = router; 

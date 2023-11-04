@@ -9,3 +9,7 @@ export function getAll() {
 export function getById(id) {
   return sendRequest(`${BASE_URL}/${id}`);
 }
+
+export function createProduct() {
+  return sendRequest(BASE_URL)
+}
