@@ -1,5 +1,18 @@
-const Product = require('../../models/products')
+const Product = require('../../models/productModel')
+const slugify = require('slugify')
 
+
+async function createProduct(req, res){
+  try {
+    if(req.body.title){
+      req.body.slug = slugify(req.body.title)
+    }
+    const newProd = Product.create(req.body)
+    res.json(newProd)
+  } catch (e) {
+    res.status(400).json({ msg: e.message })
+  }
+}
 
 async function getAllProducts(req, res) {
   try{
@@ -22,6 +35,7 @@ async function getProdById(req, res) {
 }
 
 module.exports = {
+  createProduct,
   getAllProducts,
   getProdById
 };
