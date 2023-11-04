@@ -1,6 +1,6 @@
 const Product = require('../../models/productModel')
 const slugify = require('slugify')
-
+const User = require('../../models/user')
 
 async function createProduct(req, res){
   try {
@@ -84,6 +84,25 @@ async function deleteProduct(req, res) {
   }
 }
 
+async function addProdToWishlist(req, res){
+  const { _id } = req.user
+  const { prodId } = req.body
+  console.log(_id)
+  try {
+    const loggedUser = await User.findById(_id)
+    const prodAlreadyAdded = loggedUser.wishlist.find((id) => id.toString() === prodId)
+
+    if(prodAlreadyAdded){
+      let user = await User.findByIdAndUpdate(_id, {$pull: {wishlist: prodId}}, {new: true})
+      res.json(user)
+    } else {
+      let user = await User.findByIdAndUpdate(_id, {$push: {wishlist: prodId}}, {new: true})
+      res.json(user)
+    }
+  } catch (e) {
+    res.status(400).json({ msg: e.message })
+  }
+}
 
 
 async function getAllProducts(req, res) {
@@ -107,6 +126,7 @@ async function getProdById(req, res) {
 }
 
 module.exports = {
+  addProdToWishlist,
   createProduct,
   deleteProduct,
   getAllProducts,

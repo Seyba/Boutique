@@ -9,7 +9,8 @@ router.get('/', prodCtr.getAllProducts);
 // GET /api/products/:id
 router.get('/:id', prodCtr.getProdById);
 router.post('/', ensureLoggedIn, isAdmin, prodCtr.createProduct)
+router.put('/wishlist', ensureLoggedIn, prodCtr.addProdToWishlist)
 router.put('/:id', ensureLoggedIn, isAdmin, prodCtr.updateProduct)
-router.delete('/:id', prodCtr.deleteProduct)
+router.delete('/:id', ensureLoggedIn, isAdmin, prodCtr.deleteProduct)
 
 module.exports = router; 
