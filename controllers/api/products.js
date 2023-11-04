@@ -74,6 +74,17 @@ async function updateProduct(req, res) {
 }
 
 
+async function deleteProduct(req, res) {
+  const { id } = req.params
+  try {
+    const product = await Product.findByIdAndDelete(id)
+    res.json({msg: "Prodcut deleted!"})
+  } catch (e) {
+    res.status(400).json({ msg: e.message })
+  }
+}
+
+
 
 async function getAllProducts(req, res) {
   try{
@@ -97,6 +108,7 @@ async function getProdById(req, res) {
 
 module.exports = {
   createProduct,
+  deleteProduct,
   getAllProducts,
   getProdById,
   getProducts,

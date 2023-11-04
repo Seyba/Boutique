@@ -31,7 +31,7 @@ app.use('/api/items', require('./routes/api/items'));
 
 
 app.use('/api/orders', ensureLoggedIn, require('./routes/api/order'))
-app.use('/api/products', ensureLoggedIn, require('./routes/api/product'))
+app.use('/api/products', require('./routes/api/product'))
 
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
