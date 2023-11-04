@@ -34,8 +34,8 @@ import { ProductList } from './components/products/ProductList.js';
 import { ProductItems } from './components/products/ProductItems.js';
 import { DeleteProduct } from './components/products/DeleteProduct.js'
 import { UpdateProduct } from './components/products/UpdateProduct.js'
+
 function App(props) {
-  
   const [user, setUser] = useState(getUser())
   const [users, setUsers] = useState([])
   const [products, setProducts] = useState([])

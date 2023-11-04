@@ -104,6 +104,42 @@ async function addProdToWishlist(req, res){
   }
 }
 
+async function rating (req, res) {
+  const { _id } = req.user
+  const { star, prodId, comment} = req.body 
+  try {
+    const product = await Product.findById(prodId)
+    let prodAlreadRated = product.ratings.find((userId) => userId.postedby.toString())
+    
+    if(prodAlreadRated) {
+
+      const updateRating = await Product.updateOne(
+        {ratings: {$elemMatch: prodAlreadRated }}, 
+        {$set: {"ratings.$.star": star, "ratings.$.comment": comment}},
+        {new: true}
+      )
+
+      //res.json(updateRating)
+
+    } else {
+      const rateProd = await Product.findByIdAndUpdate(prodId, 
+        {$push: {ratings: {star: star, comment: comment, postedby: _id}}}, {new: true}
+      )
+      //res.json(rateProd)
+    }
+    
+    const getAllRatings = await Product.findById(prodId)
+
+    let totalRating = getAllRatings.ratings.length
+    let ratingSum = getAllRatings.ratings.map((item) => (item.star)).reduce((prev, curr) => prev + curr, 0)
+    let actualRating = Math.round(ratingSum / totalRating)
+    let finalRating = await Product.findByIdAndUpdate(prodId, {totalRating: actualRating}, {new: true})
+
+    res.json(finalRating)
+  } catch (error) {
+    throw new Error(error)
+  }
+}
 
 async function getAllProducts(req, res) {
   try{
@@ -132,6 +168,7 @@ module.exports = {
   getAllProducts,
   getProdById,
   getProducts,
+  rating,
   updateProduct
 };
   

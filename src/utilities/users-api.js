@@ -64,7 +64,7 @@ export function removeUser(id){
   return sendRequest(`${BASE_URL}/${id}`, 'DELETE')
 }
 export function getUsers(){
-  return sendRequest(BASE_URL)
+  return sendRequest(BASE_URL, 'GET')
 }
 
 export function getSingleUser(id){
