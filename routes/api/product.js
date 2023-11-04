@@ -7,4 +7,5 @@ router.get('/', prodCtr.getAllProducts);
 // GET /api/products/:id
 router.get('/:id', prodCtr.getProdById);
 router.post('/', prodCtr.createProduct)
+router.put('/:id', prodCtr.updateProduct)
 module.exports = router; 

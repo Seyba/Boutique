@@ -13,3 +13,7 @@ export function getById(id) {
 export function createProduct() {
   return sendRequest(BASE_URL)
 }
+
+// export function updateProduct(id) {
+//   return sendRequest(`${BASE_URL}/${id}`, 'PUT')
+// }

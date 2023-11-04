@@ -60,6 +60,18 @@ async function getProducts(req, res) {
   
 }
 
+async function updateProduct(req, res) {
+  const { id } = req.params
+  try {
+    if(req.body.title) {
+      req.body.slug = slugify(req.body.title)
+    }
+    const updateProd = await Product.findByIdAndUpdate(id, req.body, {new: true})
+    res.json(updateProd)
+  } catch (e) {
+    res.status(400).json({ msg: e.message })
+  }
+}
 
 
 
@@ -87,6 +99,7 @@ module.exports = {
   createProduct,
   getAllProducts,
   getProdById,
-  getProducts
+  getProducts,
+  updateProduct
 };
   
