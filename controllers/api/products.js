@@ -1,7 +1,7 @@
 const Product = require('../../models/productModel')
 const slugify = require('slugify')
 const User = require('../../models/user')
-const {cloudinaryUploadImg} = require('../../config/uploadImage')
+const {cloudinaryUploadImg} = require('../../utils/cloudinary')
 const fs = require('fs')
 
 async function createProduct(req, res){
@@ -193,6 +193,7 @@ module.exports = {
   getProdById,
   getProducts,
   rating,
-  updateProduct
+  updateProduct,
+  uploadImages
 };
   
