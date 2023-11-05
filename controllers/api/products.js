@@ -1,6 +1,8 @@
 const Product = require('../../models/productModel')
 const slugify = require('slugify')
 const User = require('../../models/user')
+const {cloudinaryUploadImg} = require('../../config/uploadImage')
+const fs = require('fs')
 
 async function createProduct(req, res){
   try {
@@ -140,6 +142,28 @@ async function rating (req, res) {
     throw new Error(error)
   }
 }
+
+async function uploadImages(req, res){
+  try {
+    const uploader = path => cloudinaryUploadImg(path, "images")
+    const urls = []
+    const files = req.files
+
+    for(const file of files ) {
+      const { path } = file
+      const newPath = await uploader(path)
+      urls.push(newPath)
+      fs.unlinkSync(path)
+    }
+
+    const images = urls.map(file => file)
+    res.json(images)
+  } catch (e) {
+    res.status(400).json({ msg: e.message })
+  }
+}
+
+
 
 async function getAllProducts(req, res) {
   try{
