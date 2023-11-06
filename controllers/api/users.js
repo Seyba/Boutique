@@ -217,6 +217,19 @@ async function getUserCart (req, res){
     }
 }
 
+async function emptyCart(req, res){
+
+    const { _id } = req.user
+
+    try {
+        const user = await User.findOne({_id})
+        const cart = await Cart.findOneAndRemove({orderby: user._id})
+        res.json(cart)
+    } catch (e) {
+        res.status(404).json(e)
+    }
+}
+
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
@@ -225,11 +238,12 @@ module.exports = {
     blockUser,
     checkToken,
     create, 
-    login, 
+    emptyCart,
     getSingleUser, 
     getUserCart,
     getUsers, 
     getWishList,
+    login, 
     saveAddress,
     unblockUser,
     updateUser, 
