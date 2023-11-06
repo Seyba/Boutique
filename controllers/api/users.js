@@ -1,6 +1,8 @@
 const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+const Cart = require('../../models/cartModel')
+const Product = require('../../models/productModel')
 
 async function create(req, res){
     try {
@@ -161,7 +163,48 @@ async function getWishList(req, res){
     }
 }
 
+async function userCart(req, res) {
+    const { cart } = req.body
+    const { _id } = req.user
 
+    try {
+        let products = []
+        const user = await User.findById(_id)
+        
+        //* Check if user already has items in cart
+        const alreadyExist = await Cart.findOne({orderby: user._id})
+        if(alreadyExist){
+            alreadyExist.remove()
+        }
+
+        for(let i = 0; i < cart.length; i++){
+            let object = {}
+            object.product = cart[i]._id
+            object.color = cart[i].color
+            object.count = cart[i].count
+
+            let getPrice = await Product.findById(cart[i]._id).select("price").exec()
+            object.price = getPrice.price
+            products.push(object)
+        }
+
+        let cartTotal = 0
+
+        for (let i = 0; i < products.length; i++) {
+            cartTotal = cartTotal + products[i].price * products[i].count
+        }
+
+        let newCart = await new Cart({
+            products,
+            cartTotal,
+            orderby: user?._id
+        }).save()
+        res.json(newCart)
+        
+    } catch (e) {
+        res.status(404).json(e)
+    }
+}
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
