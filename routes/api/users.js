@@ -8,6 +8,7 @@ const isAdmin = require('../../config/isAdmin')
 router.post('/', usersCtrl.create);
 router.post('/login', usersCtrl.login);
 router.post('/admin-login', usersCtrl.adminLogin)
+router.post('/cart', ensureLoggedIn, usersCtrl.userCart)
 router.get('/',  usersCtrl.getUsers)
 router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
 router.get('/wishlist', ensureLoggedIn, usersCtrl.getWishList)

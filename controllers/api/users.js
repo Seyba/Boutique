@@ -205,6 +205,18 @@ async function userCart(req, res) {
         res.status(404).json(e)
     }
 }
+
+async function getUserCart (req, res){
+    const { _id } = req.user
+    try {
+        const cart = await Cart.findOne({orderby: _id})
+            .populate("products.product")
+        res.json(cart)
+    } catch (e) {
+        res.status(404).json(e)
+    }
+}
+
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
@@ -215,10 +227,12 @@ module.exports = {
     create, 
     login, 
     getSingleUser, 
+    getUserCart,
     getUsers, 
     getWishList,
     saveAddress,
     unblockUser,
     updateUser, 
-    unSubscribe
+    unSubscribe,
+    userCart
 }
