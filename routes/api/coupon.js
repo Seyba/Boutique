@@ -8,4 +8,5 @@ const couponCtrl = require('../../controllers/api/coupon')
 // router.put('/:id', cartCtrl.updateCartItem)
 // router.delete('/:userId/:prodId', cartCtrl.removeCartItem)
 router.post('/', couponCtrl.createCoupon)
+router.put('/:id', couponCtrl.updateCoupon)
 module.exports = router;
