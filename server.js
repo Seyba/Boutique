@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 //* API routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/items', require('./routes/api/items'));
-
+app.use('/api/coupon', require('./routes/api/coupon'))
 
 app.use('/api/orders', ensureLoggedIn, require('./routes/api/order'))
 app.use('/api/products', require('./routes/api/product'))

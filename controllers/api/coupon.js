@@ -9,4 +9,13 @@ async function createCoupon(req, res) {
     }
 }
 
-module.exports = {createCoupon}
+async function updateCoupon(req, res) {
+    const { id } = req.params
+    try {
+        const coupon = await Coupon.findByIdAndUpdate(id, req.body, {new: true})
+        res.json(coupon)
+    } catch (e) {
+        res.status(404).json(e)
+    }
+}
+module.exports = {createCoupon, updateCoupon}
