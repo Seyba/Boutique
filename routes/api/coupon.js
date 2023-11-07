@@ -9,6 +9,11 @@ const isAdmin = require('../../config/isAdmin')
 // router.get('/:id', cartCtrl.fetchCartItemById)
 // router.put('/:id', cartCtrl.updateCartItem)
 // router.delete('/:userId/:prodId', cartCtrl.removeCartItem)
-router.post('/', couponCtrl.createCoupon)
-router.put('/:id', couponCtrl.updateCoupon)
-module.exports = router;
+router.post('/', ensureLoggedIn, isAdmin, couponCtrl.createCoupon)
+router.delete('/:id', ensureLoggedIn, isAdmin, couponCtrl.deleteCoupon)
+router.get('/', ensureLoggedIn, isAdmin, couponCtrl.getCoupons)
+router.get('/:id', ensureLoggedIn, isAdmin, couponCtrl.getCoupon)
+router.put('/:id', ensureLoggedIn, isAdmin, couponCtrl.updateCoupon)
+
+
+module.exports = router
