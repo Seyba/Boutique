@@ -29,4 +29,24 @@ async function getCoupon(req, res) {
     }
 }
 
-module.exports = {createCoupon, getCoupon, updateCoupon}
+async function getCoupons(req, res) {
+    try {
+        const coupon = await Coupon.find({})
+        res.json(coupon)
+    } catch (e) {
+        res.status(404).json(e)
+    }
+}
+
+async function deleteCoupon(req, res) {
+    const { id } = req.params
+    try {
+        const coupon = await Coupon.findByIdAndDelete(id)
+        res.json({msg: "Coupon deleted!"})
+    } catch (e) {
+        res.status(404).json(e)
+    }
+}
+
+
+module.exports = {createCoupon, deleteCoupon, getCoupon, getCoupons, updateCoupon}
