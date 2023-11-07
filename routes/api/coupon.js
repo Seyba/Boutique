@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router();
 const couponCtrl = require('../../controllers/api/coupon')
+const ensureLoggedIn = require('../../config/ensureLoggedIn')
+const isAdmin = require('../../config/isAdmin')
 
 // router.post('/:id', cartCtrl.addCartItem)
 // router.get('/:id', cartCtrl.fetchCartItems)
