@@ -2,6 +2,7 @@ const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const Cart = require('../../models/cartModel')
+const Coupon = require('../../models/couponModel')
 const Product = require('../../models/productModel')
 
 async function create(req, res){
@@ -230,11 +231,30 @@ async function emptyCart(req, res){
     }
 }
 
+async function applyCoupon(req, res) {
+    const { coupon } = req.body
+    const { _id } = req.user
+
+    const validCoupon = await Coupon.findOne({name: coupon})
+
+    if(validCoupon === null) res.json({msg: 'Invalid Coupon!'})//throw new error('Invalid Coupon!')
+
+    const user = await User.findOne({_id})
+    let { products, cartTotal} = await Cart.findOne({orderby: user._id})
+        .populate("products.product")
+    let totalAfterDiscount = (cartTotal -(cartTotal * validCoupon.discount) / 100).toFixed(2)
+
+    await Cart.findOneAndUpdate({orderby:user._id}, {totalAfterDiscount}, {new: true})
+    
+    res.json(totalAfterDiscount)
+}
+
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
 module.exports = {
     adminLogin, 
+    applyCoupon,
     blockUser,
     checkToken,
     create, 
