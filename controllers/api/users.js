@@ -299,6 +299,17 @@ async function createOrder (req, res ) {
     }
         
 }
+
+async function getOrders(req, res){
+    const { _id } = req.user
+    try {
+        const userOrders = await Order.findOne({orderBy:_id}).populate('products.product').exec()
+        res.json(userOrders)
+    } catch (e) {
+        res.status(404).send(e)
+    }
+}
+
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
@@ -310,6 +321,7 @@ module.exports = {
     create, 
     createOrder,
     emptyCart,
+    getOrders,
     getSingleUser, 
     getUserCart,
     getUsers, 

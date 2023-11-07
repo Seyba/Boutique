@@ -13,6 +13,7 @@ router.post('/cart/cash-order', ensureLoggedIn, usersCtrl.createOrder)
 router.post('/cart/apply-coupon', ensureLoggedIn, usersCtrl.applyCoupon)
 router.get('/cart', ensureLoggedIn, usersCtrl.getUserCart)
 router.get('/',  usersCtrl.getUsers)
+router.get('/get-orders', ensureLoggedIn, usersCtrl.getOrders)
 router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
 router.get('/wishlist', ensureLoggedIn, usersCtrl.getWishList)
 router.put('/block-user/:id', ensureLoggedIn, isAdmin, usersCtrl.blockUser)
