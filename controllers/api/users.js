@@ -310,6 +310,22 @@ async function getOrders(req, res){
     }
 }
 
+async function updateOrderStatus (req, res) {
+    const { status } = req.body
+    const { id } = req.params
+
+    try {
+        const updatedOrderStatus = await Order.findByIdAndUpdate(
+            id, 
+            {orderStatus: status, paymentIntent:{status: status}}, 
+            {new: true}
+        )
+        res.json(updatedOrderStatus)
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
@@ -331,5 +347,6 @@ module.exports = {
     unblockUser,
     updateUser, 
     unSubscribe,
+    updateOrderStatus,
     userCart
 }
