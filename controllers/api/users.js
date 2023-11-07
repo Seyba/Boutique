@@ -3,7 +3,9 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const Cart = require('../../models/cartModel')
 const Coupon = require('../../models/couponModel')
+const Order = require('../../models/orderModel')
 const Product = require('../../models/productModel')
+const uniqid = require('uniqid')
 
 async function create(req, res){
     try {
@@ -232,6 +234,7 @@ async function emptyCart(req, res){
 }
 
 async function applyCoupon(req, res) {
+    
     const { coupon } = req.body
     const { _id } = req.user
 
@@ -249,6 +252,53 @@ async function applyCoupon(req, res) {
     res.json(totalAfterDiscount)
 }
 
+async function createOrder (req, res ) {
+    const { COD, couponApplied } = req.body 
+    const { _id } = req.user
+    
+    try {
+        if (!COD) throw new Error('Create cash order failed')
+        const user = await User.findById(_id)
+        let userCart = await Cart.findOne({orderby: user._id})
+        let finalAmount = 0
+
+        if(couponApplied && userCart.totalAfterDiscount) {
+            finalAmount = userCart.totalAfterDiscount
+        } else {
+            finalAmount = userCart.cartTotal 
+        }
+
+        let newOrder = await new Order({
+            products: userCart.products,
+            paymentIntent: {
+                id: uniqid(), 
+                method: 'COD', 
+                amount: finalAmount, 
+                status: "Cash On Delivery",
+                created: Date.now(),
+                currency: "USD",
+            },
+            orderBy: user._id,
+            orderStatus: "Cash on Delivery"
+        }).save()
+        let update = userCart.products.map(
+            (item) => {
+                return {
+                    updateOne: {
+                        filter: {_id: item.product._id},
+                        update: {$inc: {quantity: -item.count, sold: +item.count}}
+                    }
+                }
+            }
+        )
+
+        const updated = await Product.bulkWrite(update, {})
+        res.json({message: 'success'})
+    } catch (error) {
+        throw new Error(error)
+    }
+        
+}
 //* Helper function to create jwt token
 function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
 
@@ -258,6 +308,7 @@ module.exports = {
     blockUser,
     checkToken,
     create, 
+    createOrder,
     emptyCart,
     getSingleUser, 
     getUserCart,

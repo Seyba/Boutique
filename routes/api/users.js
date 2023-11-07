@@ -9,6 +9,8 @@ router.post('/', usersCtrl.create);
 router.post('/login', usersCtrl.login);
 router.post('/admin-login', usersCtrl.adminLogin)
 router.post('/cart', ensureLoggedIn, usersCtrl.userCart)
+router.post('/cart/cash-order', ensureLoggedIn, usersCtrl.createOrder)
+router.post('/cart/apply-coupon', ensureLoggedIn, usersCtrl.applyCoupon)
 router.get('/cart', ensureLoggedIn, usersCtrl.getUserCart)
 router.get('/',  usersCtrl.getUsers)
 router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
