@@ -294,8 +294,8 @@ async function createOrder (req, res ) {
 
         const updated = await Product.bulkWrite(update, {})
         res.json({message: 'success'})
-    } catch (error) {
-        throw new Error(error)
+    } catch (e) {
+        res.status(404).json(e)
     }
         
 }
@@ -321,13 +321,13 @@ async function updateOrderStatus (req, res) {
             {new: true}
         )
         res.json(updatedOrderStatus)
-    } catch (error) {
-        throw new Error(error)
+    } catch (e) {
+        res.status(404).json(e)
     }
 }
 
 //* Helper function to create jwt token
-function createJWT(user) {return jwt.sign({ user },process.env.SECRET,{ expiresIn: '24h' })}
+function createJWT(user) {return jwt.sign({ user }, process.env.SECRET, { expiresIn: '24h' })}
 
 module.exports = {
     adminLogin, 

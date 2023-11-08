@@ -34,6 +34,7 @@ import { ProductList } from './components/products/ProductList.js';
 import { ProductItems } from './components/products/ProductItems.js';
 import { DeleteProduct } from './components/products/DeleteProduct.js'
 import { UpdateProduct } from './components/products/UpdateProduct.js'
+import { AdminRoutes } from './components/admin/AdminRoutes.js';
 
 function App(props) {
   const [user, setUser] = useState(getUser())
@@ -108,7 +109,9 @@ function App(props) {
               <Route path="/products/list" element={<ProductList/>}/>
               <Route path="/products/list/:id" element={<ProductItems/>}/>
             </Route>
-
+            <Route element={<AdminRoutes/>}>
+              <Route path="/users" element={<UsersList/>}/>
+            </Route>
             <Route path="/" element={<HomePage/>} />
             <Route path="/about" element={<AboutPage/>} />
             <Route path="/shop" element={<ShopPage/>}/>
@@ -116,7 +119,7 @@ function App(props) {
             <Route path="/contact" element={<ContactPage/>}/>
             <Route path="/register" element={<RegisterFom/>}/>
             <Route path="/login" element={<SignInForm/>}/>
-            <Route path="/users" element={<UsersList/>}/>
+            
             <Route path="/users/:id" element={<UserPage/>}/>
             <Route path="/users/:id/edit" element={<UpdateProfile/>}/>
             <Route path="/users/:id/delete" element={<DeleteUserPage/>}/>
