@@ -27,8 +27,15 @@ export default function AdminLoggin() {
             // will resolve to the user object included in the
             // payload of the JSON Web Token (JWT)
             const user = await usersService.login(credentials);
-            setUser(user);
-            navigate('/account')
+
+            const adminUser = (user.role === 'admin')
+
+            if(adminUser) {
+                setUser(user)
+                navigate('/account')
+            } else {
+                setError('You are not an admin user!')
+            }
         } catch {
             setError('Log In Failed - Try Again');
         }
@@ -36,6 +43,9 @@ export default function AdminLoggin() {
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                <p className="error-message text-center text-red-400">&nbsp;{error}</p>
+            </div>
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <h2 className="mt-10 text-center text-xl font-semibold leading-9 tracking-tight text-gray-900">
                     Admin Log In
@@ -87,7 +97,7 @@ export default function AdminLoggin() {
                 </Link>
                 </p>
             </div>
-            <p className="error-message">&nbsp;{error}</p>
+            
         </div>
     );
 }
