@@ -10,5 +10,4 @@ export const AdminRoutes = () => {
     } else {
         return <Navigate to="/admin-login"/>
     }
-    //return user? <Outlet/> :<Navigate to="/login"/>
 }

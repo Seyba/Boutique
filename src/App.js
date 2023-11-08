@@ -105,8 +105,6 @@ function App(props) {
               <Route path="/account" element={<Dashboard/>}/>
               <Route path="/update" element={<UpdateProfile/>}/>
               <Route path="/shop/:id" element={<ProductDetailsPage/>}/>
-              <Route path="/shop/:id/delete" element={<DeleteProduct/>}/>
-              <Route path="/shop/:id/edit" element={<UpdateProduct/>}/>
               <Route path="/products/list" element={<ProductList/>}/>
               <Route path="/products/list/:id" element={<ProductItems/>}/>
             </Route>
@@ -114,6 +112,8 @@ function App(props) {
               <Route path="/users" element={<UsersList/>}/>
               <Route path="/users/:id/delete" element={<DeleteUserPage/>}/>
               <Route path="/products/create" element={<ProductForm/>}/>
+              <Route path="/shop/:id/delete" element={<DeleteProduct/>}/>
+              <Route path="/shop/:id/edit" element={<UpdateProduct/>}/>
             </Route>
             <Route path="/" element={<HomePage/>} />
             <Route path="/about" element={<AboutPage/>} />
