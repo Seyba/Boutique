@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { BoutiqueContext } from "../context/boutiqueContext"
-import { UsersListItem } from "./UsersListItem"
+
 import { Link } from "react-router-dom"
 export const UsersList = () => {
     const ctx = useContext(BoutiqueContext)
